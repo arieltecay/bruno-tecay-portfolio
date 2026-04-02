@@ -11,16 +11,16 @@ const Hero: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-8 items-center md:items-start text-left print:flex-row print:gap-6">
             {/* Foto de Perfil */}
             <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl flex-shrink-0 mx-auto md:mx-0 print:w-28 print:h-28 print:shadow-none print:border-none print:rounded-2xl">
-              <img 
-                src="/profile.png" 
-                alt={cvData.name} 
+              <img
+                src="/profile.png"
+                alt={cvData.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=Bruno+Tecay&background=1e3a8a&color=fff&size=200";
                 }}
               />
             </div>
-            
+
             <div className="flex-1 w-full">
               <div className="mb-4 print:mb-2 text-center">
                 <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight leading-tight print:text-3xl">{cvData.name}</h1>
@@ -31,7 +31,7 @@ const Hero: React.FC = () => {
               </p>
             </div>
           </div>
-          
+
           {/* Tags de Perfil */}
           <div className="mt-8 flex flex-wrap justify-start gap-4 print:mt-4 print:gap-6">
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium print:bg-transparent print:p-0 print:text-xs">
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
               <span className="w-2 h-2 bg-blue-500 rounded-full print:hidden" />
               Contacto y Ubicación
             </h2>
-            
+
             <div className="space-y-4 print:grid print:grid-cols-2 print:gap-4 print:space-y-0">
               <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
                 <Mail size={20} className="text-blue-400 print:text-blue-600" />
@@ -93,8 +93,8 @@ const Hero: React.FC = () => {
             <div className="relative z-10">
               <div className="text-3xl font-bold mb-1">15+</div>
               <div className="text-blue-100 opacity-90 text-sm font-medium leading-tight">
-                Años de Liderazgo Estratégico en <br />
-                Gestión Contable y Capital Humano
+                Gestión estratégica de capital humano, con foco en atracción, desarrollo y retención de talento alineado a objetivos de negocio.<br />
+                Liderazgo en la construcción y escalamiento de equipos de alto rendimiento, impulsando cultura, eficiencia y resultados sostenibles.
               </div>
             </div>
             <Briefcase size={80} className="absolute -right-4 -bottom-4 text-white/10" />
