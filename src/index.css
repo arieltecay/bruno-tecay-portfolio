@@ -20,11 +20,11 @@ body {
   min-height: 100vh;
 }
 
-/* Estilos de Impresión Revolucionarios */
+/* Estilos de Impresión Profesionales */
 @media print {
   @page {
     size: A4;
-    margin: 1cm;
+    margin: 1.5cm;
   }
 
   :root {
@@ -32,8 +32,6 @@ body {
   }
 
   nav, 
-  footer, 
-  button, 
   .no-print,
   [role="button"] {
     display: none !important;
@@ -43,6 +41,7 @@ body {
     background: white !important;
     color: black !important;
     padding-top: 0 !important;
+    font-size: 11pt;
   }
 
   main {
@@ -50,27 +49,47 @@ body {
   }
 
   section {
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    padding-top: 0.5cm !important;
+    padding-bottom: 0.5cm !important;
     break-inside: avoid;
+    border-bottom: 1pt solid #eee;
   }
 
-  .bg-slate-900, 
-  .bg-blue-600 {
-    background-color: #f8fafc !important;
-    color: black !important;
-    border: 1px solid #e2e8f0 !important;
-  }
+  h1 { font-size: 24pt !important; }
+  h2 { font-size: 16pt !important; margin-bottom: 0.3cm !important; }
+  h3 { font-size: 13pt !important; }
 
-  .text-white, 
-  .text-blue-100 {
-    color: black !important;
-  }
-
-  /* Asegurar que el contenido expandible sea visible al imprimir */
-  .motion-div-content {
+  /* Asegurar visibilidad total */
+  .motion-div-content,
+  [style*="height: 0"],
+  [style*="opacity: 0"] {
     height: auto !important;
     opacity: 1 !important;
     display: block !important;
+  }
+
+  /* Reset de colores para ahorrar tinta y mejorar contraste */
+  .bg-slate-900, 
+  .bg-blue-600,
+  .bg-slate-50,
+  .bg-slate-50\/30 {
+    background: transparent !important;
+    color: black !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .text-white, 
+  .text-blue-100,
+  .text-slate-400,
+  .text-slate-500,
+  .text-slate-600 {
+    color: black !important;
+  }
+
+  /* Columnas en impresión */
+  .print\:grid-cols-2 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 }

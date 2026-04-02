@@ -59,28 +59,27 @@ function App() {
 
   return (
     <div className="min-h-screen font-sans">
-      {/* Botones Flotantes de Acción (Download e Imprimir) */}
-      <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4 no-print">
+      {/* Botones Flotantes de Acción: Mejorados para Mobile */}
+      <div className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[100] flex flex-col items-end gap-3 no-print">
         <button 
           onClick={handlePrint}
-          className="w-14 h-14 bg-white text-slate-900 rounded-full shadow-2xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:-translate-y-1 transition-all group"
+          className="w-12 h-12 md:w-14 md:h-14 bg-white text-slate-900 rounded-full shadow-2xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:-translate-y-1 transition-all group"
           title="Imprimir CV"
         >
-          <Printer size={24} className="group-hover:text-blue-600" />
+          <Printer size={22} className="group-hover:text-blue-600" />
         </button>
 
         <a 
           href="/CV-Bruno-Tecay.pdf" 
           download="CV_Bruno_Tecay.pdf"
-          className="flex items-center gap-3 bg-blue-600 text-white pl-6 pr-4 py-4 rounded-full shadow-2xl hover:bg-blue-700 hover:-translate-y-1 transition-all group"
+          className="flex items-center gap-2 md:gap-3 bg-blue-600 text-white pl-4 pr-3 py-3 md:pl-6 md:pr-4 md:py-4 rounded-full shadow-2xl hover:bg-blue-700 hover:-translate-y-1 transition-all group"
         >
-          <span className="font-bold text-sm tracking-wide">DESCARGAR CV</span>
-          <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <Download size={20} />
+          <span className="font-bold text-xs md:text-sm tracking-wide">DESCARGAR CV</span>
+          <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform">
+            <Download size={18} />
           </div>
         </a>
       </div>
-
       {/* Navegación Fija e Innovadora */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100/50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">

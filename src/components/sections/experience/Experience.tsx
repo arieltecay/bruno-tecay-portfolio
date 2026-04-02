@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { cvData, Experience as ExperienceType } from '../../../data/cv-data';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronDown, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -58,35 +58,35 @@ const ExperienceItem: React.FC<{ item: ExperienceType }> = ({ item }) => {
         </div>
       </button>
 
-      <AnimatePresence>
-        {isExpanded && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-          >
-            <div className="px-6 pb-8 pt-2 border-t border-slate-50 bg-slate-50/30">
-              <div className="space-y-4">
-                {item.location && (
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-400 bg-white w-fit px-3 py-1 rounded-full border border-slate-100 shadow-sm">
-                    <MapPin size={14} className="text-blue-500" />
-                    {item.location}
-                  </div>
-                )}
-                <ul className="grid grid-cols-1 gap-3">
-                  {item.description.map((desc, idx) => (
-                    <li key={idx} className="flex gap-4 text-slate-600 leading-relaxed text-[0.95rem]">
-                      <span className="mt-2.5 w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 shadow-[0_0_8px_rgba(37,99,235,0.4)]" />
-                      {desc}
-                    </li>
-                  ))}
-                </ul>
+      <motion.div
+        initial={false}
+        animate={{ 
+          height: isExpanded ? "auto" : 0, 
+          opacity: isExpanded ? 1 : 0,
+          marginBottom: isExpanded ? 0 : -10 // Pequeño ajuste visual
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className="overflow-hidden print:!h-auto print:!opacity-100 print:!mb-0"
+      >
+        <div className="px-6 pb-8 pt-2 border-t border-slate-50 bg-slate-50/30 print:bg-transparent print:border-none print:px-0">
+          <div className="space-y-4">
+            {item.location && (
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-400 bg-white w-fit px-3 py-1 rounded-full border border-slate-100 shadow-sm print:shadow-none print:border-none print:px-0 print:text-black">
+                <MapPin size={14} className="text-blue-500 print:text-black" />
+                {item.location}
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )}
+            <ul className="grid grid-cols-1 gap-3">
+              {item.description.map((desc, idx) => (
+                <li key={idx} className="flex gap-4 text-slate-600 leading-relaxed text-[0.95rem] print:text-black print:gap-2">
+                  <span className="mt-2.5 w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 print:bg-black" />
+                  {desc}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
