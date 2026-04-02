@@ -7,10 +7,15 @@
 }
 
 :root {
-  background-color: #f8fafc;
+  background: radial-gradient(circle at top right, #f1f5f9 0%, #e2e8f0 100%);
+  background-attachment: fixed;
   color: #0f172a;
 }
 
 * {
   scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
 }

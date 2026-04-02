@@ -2,57 +2,36 @@ import React from 'react';
 import Hero from './components/sections/hero/Hero';
 import Experience from './components/sections/experience/Experience';
 import Skills from './components/sections/skills/Skills';
-import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { cvData } from './data/cv-data';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-white border-t border-slate-100 py-16 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
-        <div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">{cvData.name}</h2>
-          <p className="text-slate-500 max-w-sm">
-            Especialista en Administración y Recursos Humanos comprometido con la excelencia operativa.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">Contacto</h3>
-            <ul className="space-y-3">
-              <li>
-                <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors">
-                  <Mail size={16} className="text-blue-600" />
-                  {cvData.contact.email}
-                </a>
-              </li>
-              <li>
-                <a href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} className="flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors">
-                  <Phone size={16} className="text-blue-600" />
-                  {cvData.contact.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`https://wa.me/${cvData.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-600 hover:text-green-600 transition-colors">
-                  <MessageCircle size={16} className="text-green-500" />
-                  Enviar WhatsApp
-                </a>
-              </li>
-            </ul>
+    <footer className="py-12 px-6">
+      <div className="max-w-6xl mx-auto border-t border-slate-300/30 pt-12">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-center md:text-left">
+            <h2 className="text-xl font-bold text-slate-900 mb-1">{cvData.name}</h2>
+            <p className="text-slate-500 text-sm">
+              Contador Público & Especialista en Recursos Humanos
+            </p>
           </div>
           
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-400">Ubicación</h3>
-            <div className="flex items-center gap-2 text-slate-600">
-              <MapPin size={16} className="text-blue-600" />
-              {cvData.contact.address}
-            </div>
+          <div className="flex gap-6 text-sm text-slate-500 font-medium">
+            <span className="flex items-center gap-2">
+              <Mail size={14} className="text-blue-500" />
+              {cvData.contact.email}
+            </span>
+            <span className="flex items-center gap-2">
+              <Phone size={14} className="text-blue-500" />
+              {cvData.contact.phone}
+            </span>
           </div>
         </div>
-      </div>
-      
-      <div className="max-w-6xl mx-auto mt-16 pt-8 border-t border-slate-50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
-        <p>© {new Date().getFullYear()} Bruno Tecay. Todos los derechos reservados.</p>
+        
+        <div className="mt-12 text-center text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">
+          © {new Date().getFullYear()} Bruno Tecay • Portafolio Profesional de Alto Impacto
+        </div>
       </div>
     </footer>
   );
@@ -124,4 +103,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

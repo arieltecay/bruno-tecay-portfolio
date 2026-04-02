@@ -121,6 +121,19 @@ export const cvData = {
         "Liquidación de haberes de diferentes convenios (comercio, construcción, metalúrgicos, etc.).",
         "Confección de F931 y cuotas sindicales. Tareas y trámites administrativos varios."
       ]
+    },
+    {
+      id: "obatown",
+      company: "OBATOWN COMPANY",
+      position: "Administrativo oficina personal",
+      period: "09/2010 - 04/2011",
+      duration: "8 meses",
+      description: [
+        "Ingreso al área de personal como asistente del jefe de personal.",
+        "Carga de novedades, control de ausentismo, altas y bajas de AFIP.",
+        "Confección de informes a la gerencia y tareas administrativas varias."
+      ],
+      location: "Empresa Metalúrgica"
     }
   ]
 };

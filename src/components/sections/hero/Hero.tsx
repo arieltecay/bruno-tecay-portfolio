@@ -46,43 +46,56 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Bento Bloque: Contacto Rápido */}
+        {/* Bento Bloque: Contacto Rápido y Ubicación */}
         <div className="md:col-span-4 space-y-6">
-          <div className="bg-slate-900 p-8 rounded-3xl shadow-lg text-white">
-            <h2 className="text-xl font-bold mb-6">Contacto Directo</h2>
-            <div className="space-y-3">
+          <div className="bg-slate-900/95 backdrop-blur-xl p-8 rounded-3xl shadow-xl border border-white/5 text-white">
+            <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+              Contacto Directo
+            </h2>
+            <div className="space-y-3 mb-8">
               <a 
                 href={`https://wa.me/${cvData.contact.whatsapp}?text=Hola%20Bruno,%20vi%20tu%20perfil%20profesional...`} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-3 bg-green-600/20 border border-green-600/30 rounded-2xl hover:bg-green-600/30 transition-all group"
+                className="flex items-center justify-between p-3 bg-green-600/10 border border-green-600/20 rounded-2xl hover:bg-green-600/20 transition-all group"
               >
-                <div className="flex items-center gap-3">
-                  <MessageCircle size={20} className="text-green-500" />
-                  <span className="font-medium">WhatsApp</span>
+                <div className="flex items-center gap-3 text-green-500 group-hover:text-green-400 transition-colors">
+                  <MessageCircle size={20} />
+                  <span className="font-semibold">WhatsApp</span>
                 </div>
-                <div className="text-xs bg-green-600 text-white px-2 py-1 rounded-lg">Online</div>
+                <div className="text-[10px] bg-green-500/20 text-green-500 px-2 py-0.5 rounded-full uppercase tracking-widest font-bold">Online</div>
               </a>
 
               <a 
                 href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} 
-                className="flex items-center gap-3 p-3 bg-blue-600/10 border border-blue-600/20 rounded-2xl hover:bg-blue-600/20 transition-all"
+                className="flex items-center gap-3 p-3 bg-blue-600/10 border border-blue-600/20 rounded-2xl hover:bg-blue-600/20 transition-all text-blue-400 hover:text-blue-300"
               >
-                <Phone size={20} className="text-blue-500" />
-                <span className="font-medium">Llamar Ahora</span>
+                <Phone size={20} />
+                <span className="font-semibold">Llamar Ahora</span>
               </a>
 
               <a 
                 href={`mailto:${cvData.contact.email}`} 
-                className="flex items-center gap-3 p-3 bg-slate-800 border border-slate-700 rounded-2xl hover:bg-slate-700 transition-all"
+                className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all text-slate-300 hover:text-white"
               >
-                <Mail size={20} className="text-slate-400" />
-                <span className="font-medium">Enviar Email</span>
+                <Mail size={20} />
+                <span className="font-semibold">Enviar Email</span>
               </a>
+            </div>
+
+            <div className="pt-6 border-t border-white/10">
+              <div className="flex items-start gap-3 text-slate-400 group cursor-default">
+                <MapPin size={20} className="text-blue-500 mt-1 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="block font-bold text-white mb-1 uppercase text-[10px] tracking-widest">Ubicación</span>
+                  <span className="leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">{cvData.contact.address}</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="bg-blue-600 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden group">
+          <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden group">
             <div className="relative z-10">
               <div className="text-3xl font-bold mb-1 group-hover:scale-110 transition-transform origin-left">15+</div>
               <div className="text-blue-100 opacity-80">Años de experiencia combinada</div>
