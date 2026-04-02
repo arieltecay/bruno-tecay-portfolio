@@ -24,7 +24,7 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 1.5cm;
+    margin: 2.5cm 1.5cm; /* Más margen arriba/abajo, menos a los lados */
   }
 
   :root {
@@ -33,14 +33,16 @@ body {
 
   nav, 
   .no-print,
-  [role="button"] {
+  [role="button"],
+  button,
+  footer {
     display: none !important;
   }
 
   body {
     background: white !important;
     color: black !important;
-    padding-top: 0 !important;
+    padding-top: 1cm !important; /* Añadimos aire al inicio */
     font-size: 11pt;
   }
 
@@ -49,41 +51,66 @@ body {
   }
 
   section {
-    padding-top: 0.5cm !important;
-    padding-bottom: 0.5cm !important;
-    break-inside: avoid;
+    padding-top: 1cm !important;
+    padding-bottom: 1cm !important;
     border-bottom: 1pt solid #eee;
+    break-inside: avoid;
+  }
+
+  /* Evitar que las tarjetas se corten entre páginas */
+  .print-card {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    display: block !important;
+    position: relative !important;
+    margin-bottom: 0.5cm !important;
+    border: 1px solid #f1f5f9 !important;
+    background: white !important;
+    padding: 1rem !important;
   }
 
   h1 { font-size: 24pt !important; }
-  h2 { font-size: 16pt !important; margin-bottom: 0.3cm !important; }
+  h2 { font-size: 16pt !important; margin-bottom: 0.3cm !important; border-bottom: 1pt solid #eee !important; width: 100% !important; }
   h3 { font-size: 13pt !important; }
 
-  /* Asegurar visibilidad total */
+  /* Asegurar visibilidad total del contenido expandible */
   .motion-div-content,
-  [style*="height: 0"],
-  [style*="opacity: 0"] {
+  div[style*="height"],
+  .overflow-hidden {
     height: auto !important;
     opacity: 1 !important;
     display: block !important;
+    overflow: visible !important;
   }
 
-  /* Reset de colores para ahorrar tinta y mejorar contraste */
+  /* Ocultar elementos de UI interactiva */
+  .no-print, 
+  .chevron-container,
+  button svg,
+  nav {
+    display: none !important;
+  }
+
+  /* Reset radical de colores para impresión limpia */
   .bg-slate-900, 
   .bg-blue-600,
   .bg-slate-50,
-  .bg-slate-50\/30 {
-    background: transparent !important;
+  .bg-slate-50\/30,
+  .bg-white {
+    background: white !important;
     color: black !important;
-    border: none !important;
-    padding: 0 !important;
+    box-shadow: none !important;
+    border-color: #eee !important;
   }
 
   .text-white, 
   .text-blue-100,
   .text-slate-400,
   .text-slate-500,
-  .text-slate-600 {
+  .text-slate-600,
+  .text-blue-600,
+  .text-slate-900,
+  .text-blue-500 {
     color: black !important;
   }
 

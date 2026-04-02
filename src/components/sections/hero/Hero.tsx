@@ -22,7 +22,7 @@ const Hero: React.FC = () => {
             </div>
             
             <div className="flex-1 w-full">
-              <div className="mb-4 print:mb-2">
+              <div className="mb-4 print:mb-2 text-center">
                 <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight leading-tight print:text-3xl">{cvData.name}</h1>
                 <p className="text-xl text-blue-600 font-semibold mt-1 print:text-lg">{cvData.title}</p>
               </div>
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium print:bg-transparent print:p-0 print:text-xs">
               <User size={16} className="text-blue-500 print:text-slate-400" />
-              Contador Público
+              Contador Público Nacional
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium print:bg-transparent print:p-0 print:text-xs">
               <FileText size={16} className="text-blue-500 print:text-slate-400" />
