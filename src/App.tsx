@@ -2,8 +2,8 @@ import React from 'react';
 import Hero from './components/sections/hero/Hero';
 import Experience from './components/sections/experience/Experience';
 import Skills from './components/sections/skills/Skills';
-import { Mail, Phone } from 'lucide-react';
 import { cvData } from './data/cv-data';
+import { Mail, Phone, Download, Printer } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -35,8 +35,7 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
-
+}
 function App() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -54,8 +53,34 @@ function App() {
     }
   };
 
+  const handlePrint = () => {
+    window.print();
+  };
+
   return (
     <div className="min-h-screen font-sans">
+      {/* Botones Flotantes de Acción (Download e Imprimir) */}
+      <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4 no-print">
+        <button 
+          onClick={handlePrint}
+          className="w-14 h-14 bg-white text-slate-900 rounded-full shadow-2xl border border-slate-200 flex items-center justify-center hover:bg-slate-50 hover:-translate-y-1 transition-all group"
+          title="Imprimir CV"
+        >
+          <Printer size={24} className="group-hover:text-blue-600" />
+        </button>
+
+        <a 
+          href="/CV-Bruno-Tecay.pdf" 
+          download="CV_Bruno_Tecay.pdf"
+          className="flex items-center gap-3 bg-blue-600 text-white pl-6 pr-4 py-4 rounded-full shadow-2xl hover:bg-blue-700 hover:-translate-y-1 transition-all group"
+        >
+          <span className="font-bold text-sm tracking-wide">DESCARGAR CV</span>
+          <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform">
+            <Download size={20} />
+          </div>
+        </a>
+      </div>
+
       {/* Navegación Fija e Innovadora */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-xl border-b border-slate-100/50">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">

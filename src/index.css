@@ -19,3 +19,58 @@
 body {
   min-height: 100vh;
 }
+
+/* Estilos de Impresión Revolucionarios */
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+
+  :root {
+    background: white !important;
+  }
+
+  nav, 
+  footer, 
+  button, 
+  .no-print,
+  [role="button"] {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding-top: 0 !important;
+  }
+
+  main {
+    margin-top: 0 !important;
+  }
+
+  section {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    break-inside: avoid;
+  }
+
+  .bg-slate-900, 
+  .bg-blue-600 {
+    background-color: #f8fafc !important;
+    color: black !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+
+  .text-white, 
+  .text-blue-100 {
+    color: black !important;
+  }
+
+  /* Asegurar que el contenido expandible sea visible al imprimir */
+  .motion-div-content {
+    height: auto !important;
+    opacity: 1 !important;
+    display: block !important;
+  }
+}
