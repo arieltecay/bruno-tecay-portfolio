@@ -58,19 +58,27 @@ const Hero: React.FC = () => {
             </h2>
 
             <div className="space-y-4 print:grid print:grid-cols-2 print:gap-4 print:space-y-0">
-              <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
-                <Mail size={20} className="text-blue-400 print:text-blue-600" />
-                <div className="flex flex-col">
-                  <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Email</span>
-                  <span className="font-medium text-sm">{cvData.contact.email}</span>
-                </div>
-              </a>
-
               <a href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
                 <Phone size={20} className="text-blue-400 print:text-blue-600" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Teléfono</span>
                   <span className="font-medium text-sm">{cvData.contact.phone}</span>
+                </div>
+              </a>
+
+              <a href={`https://wa.me/${cvData.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-green-600/10 border border-green-600/20 rounded-2xl hover:bg-green-600/20 transition-all print:bg-transparent print:border-none print:p-0">
+                <MessageCircle size={20} className="text-green-500" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">WhatsApp</span>
+                  <span className="font-medium text-sm text-white print:text-slate-900">WhatsApp</span>
+                </div>
+              </a>
+
+              <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
+                <Mail size={20} className="text-blue-400 print:text-blue-600" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Email</span>
+                  <span className="font-medium text-sm">{cvData.contact.email}</span>
                 </div>
               </a>
 
@@ -81,11 +89,6 @@ const Hero: React.FC = () => {
                   <span className="font-medium text-sm leading-snug">{cvData.contact.address}</span>
                 </div>
               </div>
-
-              <a href={`https://wa.me/${cvData.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-green-600/10 border border-green-600/20 rounded-2xl hover:bg-green-600/20 transition-all print:hidden">
-                <MessageCircle size={20} className="text-green-500" />
-                <span className="font-medium text-sm">WhatsApp</span>
-              </a>
             </div>
           </div>
 
