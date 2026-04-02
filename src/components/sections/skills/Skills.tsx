@@ -63,18 +63,6 @@ const Skills: React.FC = () => {
               </div>
             ))}
           </div>
-          
-          <div className="mt-12 p-6 bg-blue-600 rounded-3xl relative overflow-hidden group">
-            <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-2">Visión Estratégica</h3>
-              <p className="text-blue-100 text-sm leading-relaxed opacity-90">
-                Capacidad probada para integrar la visión contable con la gestión humana, optimizando la rentabilidad organizacional.
-              </p>
-            </div>
-            <div className="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform">
-              <CheckCircle2 size={120} />
-            </div>
-          </div>
         </div>
       </div>
     </section>

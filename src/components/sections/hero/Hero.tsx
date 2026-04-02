@@ -89,10 +89,13 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-blue-600 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden print:hidden">
+          <div className="bg-blue-600 p-8 rounded-3xl shadow-lg text-white relative overflow-hidden print:hidden text-center">
             <div className="relative z-10">
               <div className="text-3xl font-bold mb-1">15+</div>
-              <div className="text-blue-100 opacity-80 text-sm">Años de experiencia combinada</div>
+              <div className="text-blue-100 opacity-90 text-sm font-medium leading-tight">
+                Años de Liderazgo Estratégico en <br />
+                Gestión Contable y Capital Humano
+              </div>
             </div>
             <Briefcase size={80} className="absolute -right-4 -bottom-4 text-white/10" />
           </div>
