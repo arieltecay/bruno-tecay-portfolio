@@ -11,9 +11,8 @@ const Hero: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-8 items-start">
             {/* Contenedor Foto de Perfil */}
             <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl flex-shrink-0">
-              {/* Nota: Asegúrate de tener la foto en src/assets/profile.png */}
               <img 
-                src="/src/assets/profile.png" 
+                src="/profile.png" 
                 alt={cvData.name} 
                 className="w-full h-full object-cover"
                 onError={(e) => {
