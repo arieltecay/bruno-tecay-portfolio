@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium">
               <User size={16} />
-              Contador Público
+              Contador Público Nacional
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium">
               <FileText size={16} />

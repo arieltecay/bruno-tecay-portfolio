@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <div className="text-center md:text-left">
             <h2 className="text-xl font-bold text-slate-900 mb-1">{cvData.name}</h2>
             <p className="text-slate-500 text-sm">
-              Contador Público & Especialista en Recursos Humanos
+              Contador Público Nacional & Especialista en Recursos Humanos
             </p>
           </div>
           

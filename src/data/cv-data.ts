@@ -18,7 +18,7 @@ export interface Education {
 
 export const cvData = {
   name: "Bruno Tecay",
-  title: "Contador Público & Especialista en RRHH",
+  title: "Contador Público Nacional & Especialista en RRHH",
   profile: "Profesional con gran experiencia y excelentes dotes de gestión y dirección. Cuento con conocimientos especializados para optimizar procesos, reducir costes y maximizar la rentabilidad. Destaco por mi capacidad de liderazgo para sacar lo mejor de cada empleado.",
   contact: {
     address: "Entre Rios 777 - Piso 3 Dpto. A, Tucumán",
