@@ -6,11 +6,10 @@ const Hero: React.FC = () => {
   return (
     <section id="profile" className="pt-24 pb-12 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6">
-        {/* Bento Bloque Principal: Perfil */}
         <div className="md:col-span-8 bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col justify-between">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            {/* Contenedor Foto de Perfil */}
-            <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl flex-shrink-0">
+          <div className="flex flex-col md:flex-row gap-8 items-center md:items-start text-left">
+            {/* Contenedor Foto de Perfil - Centrado en móvil via mx-auto */}
+            <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl flex-shrink-0 mx-auto md:mx-0">
               <img 
                 src="/profile.png" 
                 alt={cvData.name} 
@@ -20,8 +19,8 @@ const Hero: React.FC = () => {
                 }}
               />
             </div>
-            
-            <div className="flex-1">
+
+            <div className="flex-1 w-full">
               <div className="mb-4">
                 <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">{cvData.name}</h1>
                 <p className="text-xl text-blue-600 font-semibold mt-1">{cvData.title}</p>
@@ -31,9 +30,8 @@ const Hero: React.FC = () => {
               </p>
             </div>
           </div>
-          
-          <div className="mt-8 flex flex-wrap gap-4">
-            <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium">
+
+          <div className="mt-8 flex flex-wrap justify-start gap-4">            <div className="flex items-center gap-2 px-4 py-2 bg-slate-50 rounded-full text-slate-600 text-sm font-medium">
               <MapPin size={16} />
               Tucumán, AR
             </div>

@@ -16,28 +16,44 @@ const ExperienceItem: React.FC<{ item: ExperienceType }> = ({ item }) => {
     <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden mb-4 transition-all hover:shadow-md">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left p-6 flex flex-col md:flex-row md:items-center justify-between gap-4"
+        className="w-full text-left p-6 flex flex-col md:flex-row md:items-start justify-between gap-4 relative group"
       >
-        <div className="flex gap-4">
-          <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400">
+        <div className="flex gap-4 items-start flex-1 pr-8 md:pr-0">
+          <div className="w-12 h-12 bg-slate-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
             <Briefcase size={24} />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-slate-900">{item.position}</h3>
-            <p className="text-blue-600 font-medium">{item.company}</p>
+            <h3 className="text-xl font-bold text-slate-900 leading-tight">{item.position}</h3>
+            <p className="text-blue-600 font-medium mb-2">{item.company}</p>
+            
+            {/* Fechas visibles en móviles debajo del título */}
+            <div className="flex md:hidden flex-wrap items-center gap-x-4 gap-y-1 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+              <div className="flex items-center gap-1">
+                <Calendar size={12} />
+                {item.period}
+              </div>
+              <span className="text-blue-200">|</span>
+              <span>{item.duration}</span>
+            </div>
           </div>
         </div>
         
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex flex-col items-end text-sm text-slate-500">
-            <div className="flex items-center gap-1 font-semibold">
-              <Calendar size={14} />
+        {/* Layout para Tablet/Desktop */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex flex-col items-end text-sm text-slate-500 whitespace-nowrap">
+            <div className="flex items-center gap-1 font-semibold text-slate-900">
+              <Calendar size={14} className="text-blue-500" />
               {item.period}
             </div>
-            <span>{item.duration}</span>
+            <span className="text-xs font-medium text-slate-400">{item.duration}</span>
           </div>
-          <div className={cn("p-2 rounded-full transition-transform", isExpanded && "rotate-180 bg-slate-100")}>
-            <ChevronDown size={20} className="text-slate-400" />
+          
+          {/* Chevron posicionado de forma estable */}
+          <div className={cn(
+            "p-2 rounded-xl transition-all absolute top-6 right-6 md:static",
+            isExpanded ? "rotate-180 bg-blue-600 text-white" : "bg-slate-50 text-slate-400"
+          )}>
+            <ChevronDown size={20} />
           </div>
         </div>
       </button>
@@ -50,18 +66,18 @@ const ExperienceItem: React.FC<{ item: ExperienceType }> = ({ item }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="px-6 pb-6 pt-0 border-t border-slate-50">
-              <div className="mt-4 space-y-4">
+            <div className="px-6 pb-8 pt-2 border-t border-slate-50 bg-slate-50/30">
+              <div className="space-y-4">
                 {item.location && (
-                  <div className="flex items-center gap-2 text-sm text-slate-500">
-                    <MapPin size={14} />
+                  <div className="flex items-center gap-2 text-sm font-medium text-slate-400 bg-white w-fit px-3 py-1 rounded-full border border-slate-100 shadow-sm">
+                    <MapPin size={14} className="text-blue-500" />
                     {item.location}
                   </div>
                 )}
-                <ul className="space-y-3">
+                <ul className="grid grid-cols-1 gap-3">
                   {item.description.map((desc, idx) => (
-                    <li key={idx} className="flex gap-3 text-slate-600 leading-relaxed">
-                      <span className="mt-2.5 w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0" />
+                    <li key={idx} className="flex gap-4 text-slate-600 leading-relaxed text-[0.95rem]">
+                      <span className="mt-2.5 w-1.5 h-1.5 bg-blue-600 rounded-full flex-shrink-0 shadow-[0_0_8px_rgba(37,99,235,0.4)]" />
                       {desc}
                     </li>
                   ))}
