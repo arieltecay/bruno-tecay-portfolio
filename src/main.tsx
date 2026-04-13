@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
-import './analytics-tracker.ts'
+import { reportWebVitals } from './analytics-tracker.ts'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -9,3 +9,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <App />
   </React.StrictMode>,
 )
+
+// Inicializar medición de Web Vitals (Performance)
+reportWebVitals();
