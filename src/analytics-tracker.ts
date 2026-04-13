@@ -61,7 +61,7 @@ export const reportWebVitals = (): void => {
     // 1. Medir LCP (Largest Contentful Paint)
     const lcpObserver = new PerformanceObserver((entryList) => {
       const entries = entryList.getEntries();
-      const lastEntry = entries[entries.length - 1];
+      const lastEntry = entries[entries.length - 1] as any;
       trackEvent('web_vitals_lcp', {
         value: Math.round(lastEntry.startTime),
         event_label: lastEntry.id || 'main-content',
