@@ -38,3 +38,14 @@
 
   console.log('Google Analytics configurado exitosamente con ID:', measurementId);
 })();
+
+/**
+ * Utilidad global para trackear eventos personalizados.
+ * @param eventName Nombre del evento (ej: 'generate_lead')
+ * @param params Parámetros adicionales (ej: { method: 'whatsapp' })
+ */
+export const trackEvent = (eventName: string, params?: Record<string, any>): void => {
+  if (typeof window.gtag !== 'undefined') {
+    window.gtag('event', eventName, params);
+  }
+};

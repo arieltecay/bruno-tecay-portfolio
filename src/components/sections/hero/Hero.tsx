@@ -1,6 +1,7 @@
 import React from 'react';
 import { cvData } from '../../../data/cv-data';
 import { MapPin, Phone, Mail, FileText, User, MessageCircle, Briefcase } from 'lucide-react';
+import { trackEvent } from '../../../analytics-tracker';
 
 const Hero: React.FC = () => {
   return (
@@ -58,7 +59,11 @@ const Hero: React.FC = () => {
             </h2>
 
             <div className="space-y-4 print:grid print:grid-cols-2 print:gap-4 print:space-y-0">
-              <a href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
+              <a 
+                href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} 
+                onClick={() => trackEvent('generate_lead', { method: 'phone', location: 'hero' })}
+                className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0"
+              >
                 <Phone size={20} className="text-blue-400 print:text-blue-600" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Teléfono</span>
@@ -66,7 +71,13 @@ const Hero: React.FC = () => {
                 </div>
               </a>
 
-              <a href={`https://wa.me/${cvData.contact.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-3 bg-green-600/10 border border-green-600/20 rounded-2xl hover:bg-green-600/20 transition-all print:bg-transparent print:border-none print:p-0">
+              <a 
+                href={`https://wa.me/${cvData.contact.whatsapp}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                onClick={() => trackEvent('generate_lead', { method: 'whatsapp', location: 'hero' })}
+                className="flex items-center gap-3 p-3 bg-green-600/10 border border-green-600/20 rounded-2xl hover:bg-green-600/20 transition-all print:bg-transparent print:border-none print:p-0"
+              >
                 <MessageCircle size={20} className="text-green-500" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">WhatsApp</span>
@@ -74,7 +85,11 @@ const Hero: React.FC = () => {
                 </div>
               </a>
 
-              <a href={`mailto:${cvData.contact.email}`} className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0">
+              <a 
+                href={`mailto:${cvData.contact.email}`} 
+                onClick={() => trackEvent('generate_lead', { method: 'email', location: 'hero' })}
+                className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0"
+              >
                 <Mail size={20} className="text-blue-400 print:text-blue-600" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Email</span>

@@ -4,6 +4,7 @@ import Experience from './components/sections/experience/Experience';
 import Skills from './components/sections/skills/Skills';
 import { cvData } from './data/cv-data';
 import { Mail, Phone, Download, Printer } from 'lucide-react';
+import { trackEvent } from './analytics-tracker';
 
 const Footer: React.FC = () => {
   return (
@@ -18,14 +19,22 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="flex gap-6 text-sm text-slate-500 font-medium">
-            <span className="flex items-center gap-2">
+            <a 
+              href={`mailto:${cvData.contact.email}`}
+              onClick={() => trackEvent('generate_lead', { method: 'email', location: 'footer' })}
+              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+            >
               <Mail size={14} className="text-blue-500" />
               {cvData.contact.email}
-            </span>
-            <span className="flex items-center gap-2">
+            </a>
+            <a 
+              href={`tel:${cvData.contact.phone}`}
+              onClick={() => trackEvent('generate_lead', { method: 'phone', location: 'footer' })}
+              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
+            >
               <Phone size={14} className="text-blue-500" />
               {cvData.contact.phone}
-            </span>
+            </a>
           </div>
         </div>
         
@@ -38,6 +47,7 @@ const Footer: React.FC = () => {
 }
 function App() {
   const scrollToSection = (id: string) => {
+    trackEvent('click_navigation', { section_id: id });
     const element = document.getElementById(id);
     if (element) {
       const offset = 80; // Offset para la navbar fija
@@ -54,7 +64,15 @@ function App() {
   };
 
   const handlePrint = () => {
+    trackEvent('print_cv');
     window.print();
+  };
+
+  const handleDownloadCV = () => {
+    trackEvent('file_download', { 
+      file_name: 'CV-Bruno-Tecay.pdf',
+      extension: 'pdf'
+    });
   };
 
   return (
@@ -72,6 +90,7 @@ function App() {
         <a 
           href="/CV-Bruno-Tecay.pdf" 
           download="CV_Bruno_Tecay.pdf"
+          onClick={handleDownloadCV}
           className="flex items-center gap-2 md:gap-3 bg-blue-600 text-white pl-4 pr-3 py-3 md:pl-6 md:pr-4 md:py-4 rounded-full shadow-2xl hover:bg-blue-700 hover:-translate-y-1 transition-all group"
         >
           <span className="font-bold text-xs md:text-sm tracking-wide">DESCARGAR CV</span>
