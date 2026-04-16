@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
   readonly VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID: string;
+  readonly VITE_CLARITY_ID: string;
 }
 
 interface ImportMeta {

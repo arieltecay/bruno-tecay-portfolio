@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { trackEvent } from '../../../analytics-tracker';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,10 +13,21 @@ function cn(...inputs: ClassValue[]) {
 const ExperienceItem: React.FC<{ item: ExperienceType }> = ({ item }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handleToggle = () => {
+    const newState = !isExpanded;
+    setIsExpanded(newState);
+    if (newState) {
+      trackEvent('toggle_experience', { 
+        company: item.company, 
+        position: item.position 
+      });
+    }
+  };
+
   return (
     <div className="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden mb-4 transition-all hover:shadow-md print-card">
       <button
-        onClick={() => setIsExpanded(!isExpanded)}
+        onClick={handleToggle}
         className="w-full text-left p-6 flex flex-col md:flex-row md:items-start justify-between gap-4 relative group"
       >
         <div className="flex gap-4 items-start flex-1 pr-8 md:pr-0">

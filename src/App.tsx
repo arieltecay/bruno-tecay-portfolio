@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Hero from './components/sections/hero/Hero';
 import Experience from './components/sections/experience/Experience';
 import Skills from './components/sections/skills/Skills';
@@ -75,6 +75,30 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    const sections = ['profile', 'experience', 'formation'];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              trackEvent('view_section', { section_id: id });
+              observer.unobserve(el); // Solo trackear la primera vez que la ve
+            }
+          });
+        }, { threshold: 0.3 });
+
+        observer.observe(el);
+        observers.push(observer);
+      }
+    });
+
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
   return (
     <div className="min-h-screen font-sans">
       {/* Botones Flotantes de Acción: Mejorados para Mobile */}
@@ -137,8 +161,12 @@ function App() {
 
       <main>
         <Hero />
-        <Experience />
-        <Skills />
+        <div id="experience">
+          <Experience />
+        </div>
+        <div id="formation">
+          <Skills />
+        </div>
       </main>
       
       <Footer />

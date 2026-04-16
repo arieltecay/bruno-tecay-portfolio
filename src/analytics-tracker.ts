@@ -4,14 +4,22 @@
  */
 
 (function initializeAnalytics(): void {
+  // Bloquear ejecución si NO estamos en producción
+  if (!import.meta.env.PROD) {
+    console.log('Google Analytics: Modo Desarrollo detectado. Rastreo deshabilitado.');
+    return;
+  }
+
   // Obtener el ID desde las variables de entorno de Vite
   const measurementId = import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID;
 
   if (!measurementId) {
-    console.warn(
-      'ADVERTENCIA: La variable VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID no está definida en el entorno. ' +
-      'El seguimiento de Google Analytics está deshabilitado.'
-    );
+    if (!import.meta.env.PROD) {
+      console.warn(
+        'ADVERTENCIA: La variable VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID no está definida en el entorno. ' +
+        'El seguimiento de Google Analytics está deshabilitado.'
+      );
+    }
     return;
   }
 
@@ -35,8 +43,6 @@
   // Configuración inicial
   window.gtag('js', new Date());
   window.gtag('config', measurementId);
-
-  console.log('Google Analytics configurado exitosamente con ID:', measurementId);
 })();
 
 /**
@@ -101,4 +107,18 @@ export const reportWebVitals = (): void => {
   } catch (e) {
     console.error('Error al inicializar Web Vitals:', e);
   }
+};
+
+/**
+ * Inicializa Microsoft Clarity para mapas de calor y grabaciones.
+ * @param clarityId ID del proyecto en Clarity
+ */
+export const initializeClarity = (clarityId: string): void => {
+  if (!clarityId) return;
+
+  (function(c: any, l: any, a: any, r: any, i: any, t?: any, y?: any) {
+    c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments); };
+    t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+    y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+  })(window, document, "clarity", "script", clarityId);
 };
