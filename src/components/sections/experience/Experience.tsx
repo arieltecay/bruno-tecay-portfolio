@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { cvData, Experience as ExperienceType } from '../../../data/cv-data';
+import { Experience as ExperienceType } from '../../../data/cv-data';
 import { motion } from 'framer-motion';
 import { ChevronDown, Briefcase, Calendar, MapPin } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
@@ -102,7 +102,7 @@ const ExperienceItem: React.FC<{ item: ExperienceType }> = ({ item }) => {
   );
 };
 
-const Experience: React.FC = () => {
+const Experience: React.FC<{ experience: ExperienceType[] }> = ({ experience }) => {
   return (
     <section id="experience" className="py-12 px-6">
       <div className="max-w-6xl mx-auto">
@@ -112,7 +112,7 @@ const Experience: React.FC = () => {
         </div>
         
         <div className="space-y-4">
-          {cvData.experience.map((exp) => (
+          {experience.map((exp) => (
             <ExperienceItem key={exp.id} item={exp} />
           ))}
         </div>

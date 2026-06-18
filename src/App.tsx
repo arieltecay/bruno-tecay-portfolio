@@ -2,17 +2,18 @@ import React, { useEffect } from 'react';
 import Hero from './components/sections/hero/Hero';
 import Experience from './components/sections/experience/Experience';
 import Skills from './components/sections/skills/Skills';
-import { cvData } from './data/cv-data';
+import { profiles, CVProfile } from './data/cv-data';
+import TargetRole from './components/sections/target-role/TargetRole';
 import { Mail, Phone, Download, Printer } from 'lucide-react';
 import { trackEvent } from './analytics-tracker';
 
-const Footer: React.FC = () => {
+const Footer: React.FC<{ profile: CVProfile }> = ({ profile }) => {
   return (
     <footer className="py-12 px-6">
       <div className="max-w-6xl mx-auto border-t border-slate-300/30 pt-12">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h2 className="text-xl font-bold text-slate-900 mb-1">{cvData.name}</h2>
+            <h2 className="text-xl font-bold text-slate-900 mb-1">{profile.name}</h2>
             <p className="text-slate-500 text-sm">
               Contador Público Nacional & Especialista en dirección de RRHH
             </p>
@@ -20,20 +21,20 @@ const Footer: React.FC = () => {
           
           <div className="flex gap-6 text-sm text-slate-500 font-medium">
             <a 
-              href={`mailto:${cvData.contact.email}`}
+              href={`mailto:${profile.contact.email}`}
               onClick={() => trackEvent('generate_lead', { method: 'email', location: 'footer' })}
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
             >
               <Mail size={14} className="text-blue-500" />
-              {cvData.contact.email}
+              {profile.contact.email}
             </a>
             <a 
-              href={`tel:${cvData.contact.phone}`}
+              href={`tel:${profile.contact.phone}`}
               onClick={() => trackEvent('generate_lead', { method: 'phone', location: 'footer' })}
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
             >
               <Phone size={14} className="text-blue-500" />
-              {cvData.contact.phone}
+              {profile.contact.phone}
             </a>
           </div>
         </div>
@@ -46,6 +47,15 @@ const Footer: React.FC = () => {
   );
 }
 function App() {
+  const [activeProfile, setActiveProfile] = React.useState<CVProfile>(profiles.rrhh);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const p = params.get('p');
+    if (p && profiles[p]) {
+      setActiveProfile(profiles[p]);
+    }
+  }, []);
   const scrollToSection = (id: string) => {
     trackEvent('click_navigation', { section_id: id });
     const element = document.getElementById(id);
@@ -160,16 +170,17 @@ function App() {
       </nav>
 
       <main>
-        <Hero />
+        <Hero profile={activeProfile} />
+        {activeProfile.targetRole && <TargetRole data={activeProfile.targetRole} />}
         <div id="experience">
-          <Experience />
+          <Experience experience={activeProfile.experience} />
         </div>
         <div id="formation">
-          <Skills />
+          <Skills education={activeProfile.education} aptitudes={activeProfile.aptitudes} languages={activeProfile.languages} />
         </div>
       </main>
       
-      <Footer />
+      <Footer profile={activeProfile} />
     </div>
   )
 }

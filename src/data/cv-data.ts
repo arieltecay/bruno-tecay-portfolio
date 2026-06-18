@@ -1,3 +1,9 @@
+export interface TargetRole {
+  title: string;
+  description: string;
+  matchPoints: { title: string; detail: string; }[];
+}
+
 export interface Experience {
   id: string;
   company: string;
@@ -16,7 +22,27 @@ export interface Education {
   details?: string;
 }
 
-export const cvData = {
+export interface CVProfile {
+  name: string;
+  title: string;
+  profile: string;
+  contact: {
+    address: string;
+    phone: string;
+    whatsapp: string;
+    email: string;
+    nationality: string;
+    dni: string;
+    status: string;
+  };
+  aptitudes: string[];
+  education: Education[];
+  languages: { language: string; institution: string; details?: string }[];
+  experience: Experience[];
+  targetRole?: TargetRole;
+}
+
+const baseProfile: CVProfile = {
   name: "Bruno Tecay",
   title: "Contador Público Nacional  Especialista Dirección de RRHH",
   profile: "Profesional con gran experiencia y excelentes dotes de gestión y dirección. Cuento con conocimientos especializados para optimizar procesos, reducir costes y maximizar la rentabilidad. Destaco por mi capacidad de liderazgo para sacar lo mejor de cada empleado.",
@@ -136,4 +162,45 @@ export const cvData = {
       location: "Empresa Metalúrgica"
     }
   ]
+};
+
+export const profiles: Record<string, CVProfile> = {
+  rrhh: baseProfile,
+  finanzas: {
+    ...baseProfile,
+    title: "Contador Público Nacional | Experto en Administración y Finanzas",
+    profile: "Profesional en Ciencias Económicas con más de 10 años de experiencia, destacando en gestión estratégica, planificación financiera, flujo de fondos y dirección de equipos. Orientado a resultados, con capacidad demostrada para optimizar procesos, maximizar rentabilidad y liderar operaciones de tesorería y administración con excelencia.",
+    aptitudes: [
+      "Planificación Financiera",
+      "Gestión de Tesorería",
+      "Presupuesto y Flujo de Fondos",
+      "Liderazgo y gestión de equipos",
+      "Negociación bancaria",
+      "Auditorías internas",
+      "Resolución de problemas",
+      "Toma de decisiones"
+    ],
+    targetRole: {
+      title: "Jefe de Finanzas - Tucumán",
+      description: "Postulación para liderar la gestión financiera, presupuestaria y de tesorería de sus unidades de negocio.",
+      matchPoints: [
+        {
+          title: "Presupuesto Financiero y Flujo de Fondos",
+          detail: "Experiencia demostrable en HILADO S.A. planificando, analizando y ejecutando presupuestos financieros, así como realizando reportes ejecutivos al Directorio."
+        },
+        {
+          title: "Gestión de Tesorería y Cobranzas",
+          detail: "Sólidos conocimientos en circuito de pagos a proveedores, control de fondos y análisis de cuentas contables, adquiridos en HILADO S.A. y GASNOR S.A."
+        },
+        {
+          title: "Análisis de Desvíos e Indicadores",
+          detail: "Perfil altamente analítico con experiencia en seguimiento y análisis de desvíos presupuestarios, control de gastos e implementación de mejoras continuas en procesos administrativos."
+        },
+        {
+          title: "Liderazgo de Equipos",
+          detail: "Amplia trayectoria liderando y desarrollando personal a cargo en áreas administrativas, oficinas de sistemas y RRHH en plantas industriales."
+        }
+      ]
+    }
+  }
 };

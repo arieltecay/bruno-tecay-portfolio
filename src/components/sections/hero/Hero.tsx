@@ -1,9 +1,9 @@
 import React from 'react';
-import { cvData } from '../../../data/cv-data';
+import { CVProfile } from '../../../data/cv-data';
 import { MapPin, Phone, Mail, FileText, User, MessageCircle, Briefcase } from 'lucide-react';
 import { trackEvent } from '../../../analytics-tracker';
 
-const Hero: React.FC = () => {
+const Hero: React.FC<{ profile: CVProfile }> = ({ profile }) => {
   return (
     <section id="profile" className="pt-24 pb-12 px-6 print:pt-0 print:pb-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 print:flex print:flex-col">
@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
             <div className="w-32 h-32 md:w-40 md:h-40 bg-blue-50 rounded-3xl overflow-hidden border-4 border-white shadow-xl flex-shrink-0 mx-auto md:mx-0 print:w-28 print:h-28 print:shadow-none print:border-none print:rounded-2xl">
               <img
                 src="/profile.png"
-                alt={cvData.name}
+                alt={profile.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=Bruno+Tecay&background=1e3a8a&color=fff&size=200";
@@ -24,11 +24,11 @@ const Hero: React.FC = () => {
 
             <div className="flex-1 w-full">
               <div className="mb-4 print:mb-2 text-center">
-                <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight leading-tight print:text-3xl">{cvData.name}</h1>
-                <p className="text-xl text-blue-600 font-semibold mt-1 print:text-lg">{cvData.title}</p>
+                <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight leading-tight print:text-3xl">{profile.name}</h1>
+                <p className="text-xl text-blue-600 font-semibold mt-1 print:text-lg">{profile.title}</p>
               </div>
               <p className="text-lg text-slate-600 leading-relaxed print:text-sm print:leading-normal">
-                {cvData.profile}
+                {profile.profile}
               </p>
             </div>
           </div>
@@ -60,19 +60,19 @@ const Hero: React.FC = () => {
 
             <div className="space-y-4 print:grid print:grid-cols-2 print:gap-4 print:space-y-0">
               <a 
-                href={`tel:${cvData.contact.phone.replace(/-/g, '')}`} 
+                href={`tel:${profile.contact.phone.replace(/-/g, '')}`} 
                 onClick={() => trackEvent('generate_lead', { method: 'phone', location: 'hero' })}
                 className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0"
               >
                 <Phone size={20} className="text-blue-400 print:text-blue-600" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Teléfono</span>
-                  <span className="font-medium text-sm">{cvData.contact.phone}</span>
+                  <span className="font-medium text-sm">{profile.contact.phone}</span>
                 </div>
               </a>
 
               <a 
-                href={`https://wa.me/${cvData.contact.whatsapp}`} 
+                href={`https://wa.me/${profile.contact.whatsapp}`} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 onClick={() => trackEvent('generate_lead', { method: 'whatsapp', location: 'hero' })}
@@ -86,14 +86,14 @@ const Hero: React.FC = () => {
               </a>
 
               <a 
-                href={`mailto:${cvData.contact.email}`} 
+                href={`mailto:${profile.contact.email}`} 
                 onClick={() => trackEvent('generate_lead', { method: 'email', location: 'hero' })}
                 className="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all print:bg-transparent print:border-none print:p-0"
               >
                 <Mail size={20} className="text-blue-400 print:text-blue-600" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Email</span>
-                  <span className="font-medium text-sm">{cvData.contact.email}</span>
+                  <span className="font-medium text-sm">{profile.contact.email}</span>
                 </div>
               </a>
 
@@ -101,7 +101,7 @@ const Hero: React.FC = () => {
                 <MapPin size={20} className="text-blue-400 print:text-blue-600 mt-1" />
                 <div className="flex flex-col">
                   <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold hidden print:block">Dirección</span>
-                  <span className="font-medium text-sm leading-snug">{cvData.contact.address}</span>
+                  <span className="font-medium text-sm leading-snug">{profile.contact.address}</span>
                 </div>
               </div>
             </div>
